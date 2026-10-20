@@ -1,8 +1,13 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import InfoRow from "./components/InfoRow";
+
 export default function App() {
-  return <h1>Hello, welcome to my portfolio!</h1>;
-<div >
-
-
-</div>
-
+  return (
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      <Hero />
+      <InfoRow />
+    </div>
+  );
 }
