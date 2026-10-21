@@ -6,7 +6,7 @@ export default function Hero() {
       </h1>
 
       <p className="relative z-10 mt-4 font-['Mrs_Saint_Delafield'] text-6xl text-[#140c0c]">
-        Dhananjay Sharma
+         Dhananjay Sharma
       </p>
     </section>
   );
