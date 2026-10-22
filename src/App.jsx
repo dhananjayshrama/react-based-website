@@ -4,7 +4,7 @@ import InfoRow from "./components/InfoRow";
 import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
 export default function App() {
   return (
@@ -14,7 +14,8 @@ export default function App() {
       <InfoRow />
       <Education />
       <Skills />
-      <Projects/>
+      <Projects />
+      <Contact />
     </div>
   );
 }
