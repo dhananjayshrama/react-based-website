@@ -3,7 +3,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function Follow() {
   return (
-    <div className="self-start -mt-10">
+    <div className="self-start -mt-35">
       <h4 className="mb-1 text-xl font-['Playfair_Display'] ml-8 relative -top-5">Find Me</h4>
 
     <div className="flex items-center gap-18 border-t border-black pt-1.5 text-2xl ml-8"></div>

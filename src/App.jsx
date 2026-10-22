@@ -1,6 +1,10 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import InfoRow from "./components/InfoRow";
+import Education from "./components/Education";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Projects from "./components/Projects";
 
 export default function App() {
   return (
@@ -8,6 +12,9 @@ export default function App() {
       <Navbar />
       <Hero />
       <InfoRow />
+      <Education />
+      <Skills />
+      <Projects/>
     </div>
   );
 }
