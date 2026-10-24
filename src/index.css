@@ -33,3 +33,7 @@
     100% { opacity: 1; transform: translateY(0) rotate(0); }
   }
 }
+
+/* mobile safety */
+html, body { overflow-x: clip; }
+img, video { max-width: 100%; height: auto; }

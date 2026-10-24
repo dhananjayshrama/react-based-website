@@ -1,6 +1,6 @@
 export default function Paragraph() {
   return (
-    <div className="text-[14px] leading-6 text-[#140c0c] -mt-35 md:w-[1100px] md:max-w-none md:shrink-0 flex flex-col md:flex-row md:items-start gap-6">
+    <div className="mt-8 flex flex-col gap-6 text-[14px] leading-6 text-[#140c0c] md:-mt-10 md:w-[1100px] md:max-w-none md:shrink-0 md:flex-row md:items-start">
       {/* Left: first paragraph */}
       <p className="md:flex-1 first-letter:float-left first-letter:mr-2 first-letter:text-6xl first-letter:font-black first-letter:leading-[0.8]">
         Hi, I'm <span className="font-bold">Dhananjay Sharma</span>, a final-year

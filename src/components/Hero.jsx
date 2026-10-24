@@ -18,8 +18,13 @@ export default function Hero() {
   }`;
 
   return (
-    <section className="relative min-h-[600px] px-16 pt-16 pb-10">
-      <h1 className="relative z-10 max-w-2xl font-['Figtree'] text-7xl md:text-9xl font-black uppercase leading-[0.85] tracking-tighter text-[#140c0c]">
+    <section className="relative flex flex-col px-5 pt-6 pb-10 sm:px-8 md:block md:min-h-[600px] md:px-16 md:pt-24">
+      {/* photo: on top for phones, original position on md and up */}
+      <div className="order-1 mb-6 md:mb-0">
+        <HeroImage />
+      </div>
+
+      <h1 className="relative z-10 order-2 max-w-2xl font-['Figtree'] text-[13vw] font-black uppercase leading-[0.85] tracking-tighter text-[#140c0c] sm:text-7xl md:text-9xl">
         {WORDS.map((word, i) => (
           <span key={word}>
             <span
@@ -33,13 +38,11 @@ export default function Hero() {
       </h1>
 
       <p
-        className={`relative z-10 mt-4 font-['Mrs_Saint_Delafield'] text-6xl text-[#140c0c] ${fadeUp}`}
+        className={`relative z-10 order-3 mt-4 font-['Mrs_Saint_Delafield'] text-5xl text-[#140c0c] md:text-6xl ${fadeUp}`}
         style={{ transitionDelay: `${0.2 + WORDS.length * GAP}s` }}
       >
         Dhananjay Sharma
       </p>
-
-      <HeroImage />
     </section>
   );
 }

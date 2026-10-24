@@ -1,11 +1,9 @@
-import profile from "../assets/img.jpeg";
+import img from "../assets/img.jpeg";
 
 export default function HeroImage() {
   return (
-    <img
-      src={profile}
-      alt="Dhananjay Sharma"
-      className="absolute right-20 top-17 z-0 w-[60%] h-[400px] object-cover bg-gray-200"
-    />
+    <div className="relative z-0 w-full md:absolute md:right-18 md:top-24 md:h-[450px] md:w-[60%] md:overflow-hidden">
+  <img src={img} alt="Dhananjay Sharma" className="w-full object-cover object-top md:h-full" />
+</div>
   );
 }

@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import resume from "../assets/resume.pdf";
 
 // 1. Create a free form at formspree.io (use the same email below)
 //    and paste its URL here. This is what fixes the "didn't send" error.
 const FORM_URL = "https://formspree.io/f/YOUR_FORM_ID";
 
-// 2. Update your own links
-const EMAIL = "dhnanjayrajeshsharma@gmail.com";
+// 2. Your links
+const EMAIL = "dhananjayrajeshsharma@gmail.com";
 const GITHUB = "https://github.com/dhananjayshrama";
-const LINKEDIN = "https://www.linkedin.com/in/your-id";
+const LINKEDIN = "https://www.linkedin.com/in/dhananjay-sharma-564795248/";
+
+// 3. Resume lives in src/assets/resume.pdf
+const RESUME = resume;
 
 const sans = "font-['Segoe_UI','Open_Sans',sans-serif]";
 const display = "font-['Montserrat','Segoe_UI',sans-serif]";
@@ -51,7 +55,6 @@ export default function Contact() {
         form.reset();
         setStatus("success");
       } else {
-        // shows the real reason in the browser console (F12) while testing
         const data = await res.json().catch(() => ({}));
         console.error("Formspree error:", res.status, data);
         setStatus("error");
@@ -65,20 +68,17 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-16 bg-white px-4 py-16 text-[#150f10] lg:px-8 lg:py-24"
+      className="scroll-mt-16 overflow-x-hidden bg-white px-5 py-14 text-[#150f10] sm:px-8 lg:py-24"
     >
-      {/* fonts, kept here so this stays a single file (skip if already loaded) */}
-      <style>{`@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Mrs+Saint+Delafield&display=swap");`}</style>
-
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* LEFT: plain white box (no outer border) */}
-        <div className="order-2 flex flex-col justify-center self-start bg-white px-6 py-8 lg:order-1 lg:py-10 lg:pl-14 lg:pr-[clamp(5rem,8vw,8rem)]">
+        {/* LEFT: form (below the headline on phones) */}
+        <div className="relative order-2 flex flex-col justify-center self-start bg-white py-4 lg:order-1 lg:py-10 lg:pl-14 lg:pr-[clamp(5rem,8vw,8rem)]">
           <p className={`mb-6 max-w-[32rem] text-[1rem] leading-relaxed ${sans}`}>
             Looking for internships, junior MERN roles or freelance work? Tell me
             what you&rsquo;re building and I&rsquo;ll reply by email.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex max-w-[32rem] flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex w-full max-w-[32rem] flex-col gap-4">
             <div className="relative">
               <input
                 id="name"
@@ -133,16 +133,25 @@ export default function Contact() {
               className="absolute -left-[9999px] h-px w-px opacity-0"
             />
 
-            <div className="mt-1 flex flex-wrap items-center gap-4">
+            <div className="mt-1 flex flex-wrap items-center gap-3 sm:gap-4">
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className={`cursor-pointer rounded-none border border-[#150f10] bg-[#150f10] px-8 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:enabled:bg-transparent hover:enabled:text-[#150f10] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#150f10] disabled:cursor-wait disabled:opacity-60 ${display}`}
+                className={`cursor-pointer rounded-none border border-[#150f10] bg-[#150f10] px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:enabled:bg-transparent hover:enabled:text-[#150f10] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#150f10] disabled:cursor-wait disabled:opacity-60 sm:px-8 ${display}`}
               >
                 {status === "sending" ? "Sending" : "Send message"}
               </button>
 
-              <p role="status" aria-live="polite" className={`m-0 text-[0.9rem] ${sans}`}>
+              <a
+                href={RESUME}
+                target="_blank"
+                rel="noreferrer"
+                className={`cursor-pointer rounded-none border border-[#150f10] bg-transparent px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#150f10] transition hover:bg-[#150f10] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#150f10] sm:px-8 ${display}`}
+              >
+                Resume
+              </a>
+
+              <p role="status" aria-live="polite" className={`m-0 w-full text-[0.9rem] ${sans}`}>
                 {status === "success" && "Message sent. I'll get back to you soon."}
                 {status === "error" &&
                   `The message didn't send. Try again, or email ${EMAIL} directly.`}
@@ -151,10 +160,10 @@ export default function Contact() {
           </form>
         </div>
 
-        {/* RIGHT: headline, social icons, signature */}
+        {/* RIGHT: headline, social icons, signature (on top on phones) */}
         <div className="relative z-10 order-1 mb-10 flex flex-col items-start pt-4 lg:order-2 lg:mb-0 lg:items-end">
           <h2
-            className={`m-0 whitespace-nowrap text-left text-[14.5vw] font-black uppercase leading-[0.88] tracking-[-0.03em] lg:text-right lg:text-[clamp(2.6rem,8.5vw,8.5rem)] ${display}`}
+            className={`m-0 whitespace-nowrap text-left text-[12vw] font-black uppercase leading-[0.88] tracking-[-0.03em] sm:text-[11vw] lg:text-right lg:text-[clamp(2.6rem,8.5vw,8.5rem)] ${display}`}
           >
             Let&rsquo;s
             <br />
@@ -163,7 +172,7 @@ export default function Contact() {
             together
           </h2>
 
-          <div className="mt-10 flex w-full max-w-[260px] justify-between border-t border-[#150f10] pt-5 text-[1.85rem] leading-none">
+          <div className="mt-8 flex w-full max-w-[260px] justify-between border-t border-[#150f10] pt-5 text-[1.85rem] leading-none lg:mt-10">
             <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub" className={iconLink}>
               <FaGithub />
             </a>
@@ -175,7 +184,17 @@ export default function Contact() {
             </a>
           </div>
 
-          <p className={`mt-8 text-[2.25rem] leading-none ${script}`}>Made by Danny</p>
+          <p className={`mt-8 border-t border-[#150f10]/30 pt-4 text-[0.7rem] uppercase tracking-[0.18em] text-[#150f10]/70 ${display}`}>
+  Made by{" "}
+  <a
+    href={GITHUB}
+    target="_blank"
+    rel="noreferrer"
+    className="font-semibold text-[#150f10] hover:opacity-55"
+  >
+    @dhananjayshrma2026
+  </a>
+</p>
         </div>
       </div>
     </section>
