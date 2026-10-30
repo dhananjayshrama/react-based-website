@@ -19,7 +19,7 @@ const projects = [
   {
     status: "Completed",
     title: "Portfolio Website",
-    about: "Personal site built with React and Tailwind CSS.",
+    about: "Personal site built with React and Tailwind CSS git&github.",
     tags: ["React", "Tailwind"],
     link: "https://github.com/your-username/portfolio",
   },
