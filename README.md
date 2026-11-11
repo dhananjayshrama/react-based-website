@@ -1,16 +1,105 @@
-# React + Vite
+# Dhananjay Sharma | Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive personal portfolio website for a MERN stack developer. It has a light and dark theme that switches with an "ink bleed" animation, and the hero photo changes with the theme.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Responsive layout for phones, tablets and desktops
+- Light and dark theme with a WebGL ink bleed transition that starts at the click point
+- Hero photo that changes in dark mode
+- Animated hero heading
+- Glass-style fixed navigation bar
+- Sections for About, Education, Skills, Projects and Contact
+- Skills grid with progress bars and links to project repositories
+- Downloadable resume
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React**: component-based UI
+- **Vite**: development server and build tool
+- **Tailwind CSS v4**: utility-first styling
+- **GSAP**: animation timing
+- **html2canvas-pro**: page snapshots for the theme transition
+- **WebGL**: ink rendering
+- **react-icons**: skill icons
+- **TypeScript**: used for the ink effect files
+- **Google Fonts**: Figtree, Luxurious Roman and Smooch Sans
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+
+- Node.js 18 or newer
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/react-webside.git
+cd react-webside
+npm install
+```
+
+### Run in development
+
+```bash
+npm run dev
+```
+
+Open the address shown in the terminal (usually http://localhost:5173).
+
+### Build for production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```
+react-webside/
+├── index.html
+├── vite.config.js
+├── package.json
+├── public/
+└── src/
+    ├── main.jsx            app entry point
+    ├── App.jsx             page layout, starts the ink effect
+    ├── index.css           theme colors, button and overlay styles
+    ├── assets/             photos and resume
+    ├── components/         Navbar, Hero, Skills, Projects, Contact and more
+    └── ink/                ink bleed theme effect
+        ├── setup.js
+        ├── capture/        page snapshots
+        ├── gl/             WebGL renderer
+        └── ui/             animation, theme and button logic
+```
+
+## Theming
+
+Components use theme color names instead of fixed colors, so one change updates the whole page:
+
+| Name | Used for |
+|---|---|
+| `paper` | page and section background |
+| `ink` | main text, borders, dark buttons |
+| `muted` | soft gray text |
+| `line` | borders and dividers |
+| `card` | skill card background |
+
+The active theme is stored in the `data-theme` attribute on the `<html>` element.
+
+## Notes
+
+- The theme is not saved, so reloading returns to light mode.
+- `html2canvas-pro` is used instead of `html2canvas` because Tailwind v4 colors use `oklch()`.
+
+## Author
+
+**Dhananjay Sharma**, MERN Stack Developer
+GitHub: https://github.com/your-username
+
+## Credits
+
+Ink bleed theme effect based on the ink-bleed-theme-changer project.
