@@ -215,3 +215,18 @@ html[data-theme='dark'] .hero-img-light {
 html[data-theme='dark'] .hero-img-dark {
   display: block;
 }
+/* Test: force the heading light in dark mode and add a shadow so it shows over the photo */
+html[data-theme='dark'] h1,
+html[data-theme='dark'] h1 span {
+  color: #f2efe8 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+/* Test: force the heading light in dark mode and add a shadow so it shows over the photo */
+html[data-theme='dark'] h1,
+html[data-theme='dark'] h1 span {
+  color: #f2efe8 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+html[data-theme='dark'] h1 {
+  mix-blend-mode: difference;
+}

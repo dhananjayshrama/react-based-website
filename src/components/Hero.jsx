@@ -25,30 +25,33 @@ export default function Hero() {
         <HeroImage />
       </div>
 
-      <h1 className="relative z-10 order-2 max-w-2xl font-['Figtree'] text-[13vw] font-black uppercase leading-[0.85] tracking-tighter text-ink sm:text-7xl md:text-9xl">
+      {/* color is set inline with the theme variable, so every word (including PER) follows dark/light */}
+      <h1
+        className="relative z-10 order-2 max-w-2xl font-['Figtree'] text-[13vw] font-black uppercase leading-[0.85] tracking-tighter sm:text-7xl md:text-9xl"
+        style={{ color: "var(--ink)" }}
+      >
         {WORDS.map((word, i) => (
           <span key={word}>
             <span
               className={`inline-block ${fadeUp}`}
-              style={{ transitionDelay: `${0.2 + i * GAP}s` }}
+              style={{ transitionDelay: `${0.2 + i * GAP}s`, color: "var(--ink)" }}
             >
-              {word === "DEVELOPER" ? (
-                <>
-                  DEVELO
-                  {/* PER stays dark in both themes; inline style beats the safety-net CSS */}
-                  <span style={{ color: "#140c0c" }}>PER</span>
-                </>
-              ) : (
-                word
-              )}
+              {word}
             </span>{" "}
           </span>
         ))}
       </h1>
 
+      {/* OLD font line (kept for reference):
+          className={`relative z-10 order-3 mt-4 font-['Mrs_Saint_Delafield'] text-5xl text-ink md:text-6xl ${fadeUp}`}
+      */}
       <p
-        className={`relative z-10 order-3 mt-4 font-['Mrs_Saint_Delafield'] text-5xl text-ink md:text-6xl ${fadeUp}`}
-        style={{ transitionDelay: `${0.2 + WORDS.length * GAP}s` }}
+        className={`relative z-10 order-3 mt-4 font-['Luxurious_Roman'] ${fadeUp}`}
+        style={{
+          fontSize: "clamp(2.2rem,5.5vw, 3.1rem)",
+          color: "var(--ink)",
+          transitionDelay: `${0.2 + WORDS.length * GAP}s`,
+        }}
       >
         Dhananjay Sharma
       </p>
