@@ -13,7 +13,8 @@ export default function Hero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  const fadeUp = `transition-all duration-1000 ease-out motion-reduce:transition-none ${
+  // only opacity and transform animate, so theme colors change instantly
+  const fadeUp = `transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
     show ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
   }`;
 
@@ -24,21 +25,29 @@ export default function Hero() {
         <HeroImage />
       </div>
 
-      <h1 className="relative z-10 order-2 max-w-2xl font-['Figtree'] text-[13vw] font-black uppercase leading-[0.85] tracking-tighter text-[#140c0c] sm:text-7xl md:text-9xl">
+      <h1 className="relative z-10 order-2 max-w-2xl font-['Figtree'] text-[13vw] font-black uppercase leading-[0.85] tracking-tighter text-ink sm:text-7xl md:text-9xl">
         {WORDS.map((word, i) => (
           <span key={word}>
             <span
               className={`inline-block ${fadeUp}`}
               style={{ transitionDelay: `${0.2 + i * GAP}s` }}
             >
-              {word}
+              {word === "DEVELOPER" ? (
+                <>
+                  DEVELO
+                  {/* PER stays dark in both themes; inline style beats the safety-net CSS */}
+                  <span style={{ color: "#140c0c" }}>PER</span>
+                </>
+              ) : (
+                word
+              )}
             </span>{" "}
           </span>
         ))}
       </h1>
 
       <p
-        className={`relative z-10 order-3 mt-4 font-['Mrs_Saint_Delafield'] text-5xl text-[#140c0c] md:text-6xl ${fadeUp}`}
+        className={`relative z-10 order-3 mt-4 font-['Mrs_Saint_Delafield'] text-5xl text-ink md:text-6xl ${fadeUp}`}
         style={{ transitionDelay: `${0.2 + WORDS.length * GAP}s` }}
       >
         Dhananjay Sharma

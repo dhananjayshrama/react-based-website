@@ -16,24 +16,23 @@ const RESUME = resume;
 
 const sans = "font-['Segoe_UI','Open_Sans',sans-serif]";
 const display = "font-['Montserrat','Segoe_UI',sans-serif]";
-const script = "font-['Mrs_Saint_Delafield',cursive]";
 
 const iconLink =
-  "hover:opacity-55 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#150f10]";
+  "hover:opacity-55 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink";
 
-// simple input: solid white, square corners, no shadow
+// simple input: solid background, square corners, no shadow
 const field =
-  "peer w-full rounded-none border border-[#150f10]/30 bg-white px-4 pb-2 pt-6 text-[1rem] text-[#150f10] transition " +
+  "peer w-full rounded-none border border-line bg-paper px-4 pb-2 pt-6 text-[1rem] text-ink transition " +
   "placeholder:text-transparent " +
-  "focus-visible:outline-none focus-visible:border-[#150f10] " +
+  "focus-visible:outline-none focus-visible:border-ink " +
   sans;
 
 // label that sits inside the box and floats up on focus or when filled
 const floatLabel =
-  "pointer-events-none absolute left-4 top-4 origin-left text-[0.95rem] text-[#150f10]/55 transition-all duration-200 " +
-  "peer-focus:top-2 peer-focus:text-[0.7rem] peer-focus:font-semibold peer-focus:text-[#150f10] " +
+  "pointer-events-none absolute left-4 top-4 origin-left text-[0.95rem] text-muted transition-all duration-200 " +
+  "peer-focus:top-2 peer-focus:text-[0.7rem] peer-focus:font-semibold peer-focus:text-ink " +
   "peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.7rem] " +
-  "peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-[#150f10] " +
+  "peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-ink " +
   sans;
 
 export default function Contact() {
@@ -68,11 +67,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-16 overflow-x-hidden bg-white px-5 py-14 text-[#150f10] sm:px-8 lg:py-24"
+      className="scroll-mt-16 overflow-x-hidden bg-paper px-5 py-14 text-ink sm:px-8 lg:py-24"
     >
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
         {/* LEFT: form (below the headline on phones) */}
-        <div className="relative order-2 flex flex-col justify-center self-start bg-white py-4 lg:order-1 lg:py-10 lg:pl-14 lg:pr-[clamp(5rem,8vw,8rem)]">
+        <div className="relative order-2 flex flex-col justify-center self-start bg-paper py-4 lg:order-1 lg:py-10 lg:pl-14 lg:pr-[clamp(5rem,8vw,8rem)]">
           <p className={`mb-6 max-w-[32rem] text-[1rem] leading-relaxed ${sans}`}>
             Looking for internships, junior MERN roles or freelance work? Tell me
             what you&rsquo;re building and I&rsquo;ll reply by email.
@@ -137,7 +136,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className={`cursor-pointer rounded-none border border-[#150f10] bg-[#150f10] px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:enabled:bg-transparent hover:enabled:text-[#150f10] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#150f10] disabled:cursor-wait disabled:opacity-60 sm:px-8 ${display}`}
+                className={`cursor-pointer rounded-none border border-ink bg-ink px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-paper transition hover:enabled:bg-transparent hover:enabled:text-ink focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-ink disabled:cursor-wait disabled:opacity-60 sm:px-8 ${display}`}
               >
                 {status === "sending" ? "Sending" : "Send message"}
               </button>
@@ -146,7 +145,7 @@ export default function Contact() {
                 href={RESUME}
                 target="_blank"
                 rel="noreferrer"
-                className={`cursor-pointer rounded-none border border-[#150f10] bg-transparent px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#150f10] transition hover:bg-[#150f10] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#150f10] sm:px-8 ${display}`}
+                className={`cursor-pointer rounded-none border border-ink bg-transparent px-6 py-3.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-ink transition hover:bg-ink hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-ink sm:px-8 ${display}`}
               >
                 Resume
               </a>
@@ -172,7 +171,7 @@ export default function Contact() {
             together
           </h2>
 
-          <div className="mt-8 flex w-full max-w-[260px] justify-between border-t border-[#150f10] pt-5 text-[1.85rem] leading-none lg:mt-10">
+          <div className="mt-8 flex w-full max-w-[260px] justify-between border-t border-ink pt-5 text-[1.85rem] leading-none lg:mt-10">
             <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub" className={iconLink}>
               <FaGithub />
             </a>
@@ -184,17 +183,17 @@ export default function Contact() {
             </a>
           </div>
 
-          <p className={`mt-8 border-t border-[#150f10]/30 pt-4 text-[0.7rem] uppercase tracking-[0.18em] text-[#150f10]/70 ${display}`}>
-  Made by{" "}
-  <a
-    href={GITHUB}
-    target="_blank"
-    rel="noreferrer"
-    className="font-semibold text-[#150f10] hover:opacity-55"
-  >
-    @dhananjayshrma2026
-  </a>
-</p>
+          <p className={`mt-8 border-t border-line pt-4 text-[0.7rem] uppercase tracking-[0.18em] text-muted ${display}`}>
+            Made by{" "}
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-ink hover:opacity-55"
+            >
+              dhananjayrajeshsharma@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </section>

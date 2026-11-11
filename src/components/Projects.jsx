@@ -53,7 +53,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-white px-6 pt-1 pb-24 text-[#140c0c] md:px-10"
+      className="bg-paper px-6 pt-1 pb-24 text-ink md:px-10"
     >
       {/* heading and arrows */}
       <div className="mb-8 flex items-end justify-between">
@@ -66,7 +66,7 @@ export default function Projects() {
             onClick={() => slide(-1)}
             disabled={atStart}
             aria-label="Previous project"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#140c0c] transition-colors hover:bg-[#140c0c] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#140c0c]"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
           >
             <FaArrowLeft />
           </button>
@@ -74,7 +74,7 @@ export default function Projects() {
             onClick={() => slide(1)}
             disabled={atEnd}
             aria-label="Next project"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#140c0c] transition-colors hover:bg-[#140c0c] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#140c0c]"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
           >
             <FaArrowRight />
           </button>
@@ -85,7 +85,7 @@ export default function Projects() {
       <div
         ref={sliderRef}
         onScroll={updateArrows}
-        className="flex snap-x snap-mandatory overflow-x-auto border-y border-[#140c0c] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory overflow-x-auto border-y border-ink [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((p, i) => (
           <a
@@ -93,7 +93,7 @@ export default function Projects() {
             href={p.link}
             target="_blank"
             rel="noreferrer"
-            className="group flex min-h-[340px] w-[85%] shrink-0 snap-start flex-col justify-between border-r border-[#140c0c] p-6 transition-colors duration-300 last:border-r-0 hover:bg-[#140c0c] hover:text-white sm:w-[48%] lg:w-[36%]"
+            className="group flex min-h-[340px] w-[85%] shrink-0 snap-start flex-col justify-between border-r border-ink p-6 transition-colors duration-300 last:border-r-0 hover:bg-ink hover:text-paper sm:w-[48%] lg:w-[36%]"
           >
             {/* number and status */}
             <div>

@@ -1,5 +1,51 @@
 @import "tailwindcss";
 
+/* ---------- Theme colors ---------- */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-wash: var(--wash);
+  --color-card: var(--card);
+  --color-track: var(--track);
+  --color-track-inv: var(--track-inv);
+}
+
+:root,
+html[data-theme='light'] {
+  color-scheme: light;
+  --paper: #ffffff;
+  --ink: #140c0c;
+  --muted: #6b7280;
+  --line: #d1d5db;
+  --wash: #f1f1f1;
+  --card: #e8eaed;
+  --track: rgba(20, 12, 12, 0.1);
+  --track-inv: rgba(255, 255, 255, 0.2);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #0f0d0d;
+  --ink: #f2efe8;
+  --muted: #9a958c;
+  --line: #3a3636;
+  --wash: #1d1a1a;
+  --card: #1c1919;
+  --track: rgba(242, 239, 232, 0.14);
+  --track-inv: rgba(15, 13, 13, 0.2);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
 @theme {
   --animate-fade-up: fade-up 1.4s ease-out forwards;
   --animate-blur-in: blur-in 1.8s ease-out forwards;
@@ -37,3 +83,135 @@
 /* mobile safety */
 html, body { overflow-x: clip; }
 img, video { max-width: 100%; height: auto; }
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  transform: rotate(-12deg) scale(1.04);
+  border-color: var(--ink);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle__icon {
+  overflow: visible;
+}
+
+.theme-toggle__body {
+  fill: currentColor;
+}
+
+.theme-toggle__rays {
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* ---------- Ink overlay ---------- */
+.ink-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.ink-canvas.is-active {
+  visibility: visible;
+}
+
+/* CSS fallback (no WebGL2, reduced motion, or snapshots not ready yet). */
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition:
+    background-color var(--theme-fade, 0.45s) ease,
+    border-color var(--theme-fade, 0.45s) ease,
+    color var(--theme-fade, 0.45s) ease,
+    fill var(--theme-fade, 0.45s) ease,
+    stroke var(--theme-fade, 0.45s) ease,
+    box-shadow var(--theme-fade, 0.45s) ease !important;
+}
+/* Safety net: old fixed colors, dark mode only */
+html[data-theme='dark'] [class*='text-[#140c0c]'],
+html[data-theme='dark'] [class*='text-[#150f10]'],
+html[data-theme='dark'] .text-black {
+  color: var(--ink);
+}
+
+html[data-theme='dark'] .bg-white {
+  background-color: var(--paper);
+}
+
+html[data-theme='dark'] .text-gray-500,
+html[data-theme='dark'] .text-gray-600 {
+  color: var(--muted);
+}
+/* Glass navbar */
+.glass-nav {
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+html[data-theme='dark'] .glass-nav {
+  background-color: rgba(0, 0, 0, 0.55);
+}
+/* Text theme button (no icon) */
+button.theme-toggle {
+  width: auto;
+  height: auto;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* light mode shows "DARK", dark mode shows "LIGHT" */
+.theme-toggle__to-light {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-toggle__to-dark {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-toggle__to-light {
+  display: inline;
+}
+/* Hero photo: swap with the theme */
+.hero-img-dark {
+  display: none;
+}
+
+html[data-theme='dark'] .hero-img-light {
+  display: none;
+}
+
+html[data-theme='dark'] .hero-img-dark {
+  display: block;
+}

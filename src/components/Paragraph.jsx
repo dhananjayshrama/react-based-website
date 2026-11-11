@@ -1,6 +1,6 @@
 export default function Paragraph() {
   return (
-    <div className="mt-8 flex flex-col gap-6 text-[14px] leading-6 text-[#140c0c] md:-mt-10 md:w-[1100px] md:max-w-none md:shrink-0 md:flex-row md:items-start">
+    <div className="mt-8 flex flex-col gap-6 text-[14px] leading-6 text-ink md:-mt-10 md:w-[1100px] md:max-w-none md:shrink-0 md:flex-row md:items-start">
       {/* Left: first paragraph */}
       <p className="md:flex-1 first-letter:float-left first-letter:mr-2 first-letter:text-6xl first-letter:font-black first-letter:leading-[0.8]">
         Hi, I'm <span className="font-bold">Dhananjay Sharma</span>, a final-year
@@ -11,7 +11,7 @@ export default function Paragraph() {
       </p>
 
       {/* Vertical line */}
-      <div className="hidden md:block w-px h-28 bg-[#140c0c]/30" />
+      <div className="hidden md:block w-px h-28 bg-line" />
 
       {/* Right: second paragraph */}
       <p className="md:flex-1">

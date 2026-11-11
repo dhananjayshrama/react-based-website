@@ -124,7 +124,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="bg-white px-6 pt-1 pb-24 text-[#140c0c] md:px-10"
+      className="bg-paper px-6 pt-1 pb-24 text-ink md:px-10"
     >
       <h4 className="mb-8 font-['Figtree'] text-4xl font-black uppercase leading-none tracking-tighter md:text-5xl">
         Skills
@@ -140,7 +140,7 @@ export default function Skills() {
               target="_blank"
               rel="noreferrer"
               className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl p-3.5 pb-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_26px_rgba(20,12,12,0.22)] ${
-                s.dark ? "bg-[#140c0c] text-white" : "bg-[#e8eaed] text-[#140c0c]"
+                s.dark ? "bg-ink text-paper" : "bg-card text-ink"
               } ${s.span}`}
             >
               {/* top: icon and percentage */}
@@ -181,12 +181,12 @@ export default function Skills() {
               {/* progress bar */}
               <div
                 className={`absolute bottom-0 left-0 h-1 w-full ${
-                  s.dark ? "bg-white/20" : "bg-[#140c0c]/10"
+                  s.dark ? "bg-track-inv" : "bg-track"
                 }`}
               >
                 <div
                   className={`h-full rounded-r-full ${
-                    s.dark ? "bg-white" : "bg-[#140c0c]"
+                    s.dark ? "bg-paper" : "bg-ink"
                   }`}
                   style={{ width: `${s.percent}%` }}
                 />

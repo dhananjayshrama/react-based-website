@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfolio of Dhananjay Sharma, MERN stack developer." />
+    <meta name="color-scheme" content="light dark" />
     <title>Dhananjay Sharma | MERN Developer</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -14,6 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Figtree:wght@400;600;900&family=Mrs+Saint+Delafield&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Paint the right background before any JS/CSS arrives: no white flash. -->
+    <style>
+      html[data-theme='light'] { background: #ffffff; }
+      html[data-theme='dark'] { background: #0f0d0d; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
