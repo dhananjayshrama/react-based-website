@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 const LINKS = [
   { label: "ABOUT", href: "#about" },
@@ -20,8 +21,13 @@ export default function Navbar() {
     >
       <div className="flex h-14 items-center justify-between px-5 sm:px-8 md:justify-start md:gap-10 md:px-16 md:py-7">
         {/* logo */}
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2.5">
+          <a href="#" aria-label="Home" className="shrink-0">
+            <Logo size={34} />
+          </a>
+          {/* old logo (backup):
           <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ink text-paper">D</span>
+          */}
           <b className="whitespace-nowrap">DHANANJAY SHARMA</b>
           <div className="hidden h-6 w-px shrink-0 bg-muted md:block"></div>
         </div>
