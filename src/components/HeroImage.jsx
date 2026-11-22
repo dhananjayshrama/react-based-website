@@ -1,5 +1,10 @@
-import img from "../assets/img.jpeg";
-import imgDark from "../assets/img-dark.jpeg.png";
+// ----- OLD photos (backup) -----
+// import img from "../assets/img.jpeg";
+// import imgDark from "../assets/img-dark.jpeg.png";
+
+// ----- NEW photos -----
+import img from "../assets/img1.png";
+import imgDark from "../assets/img-dark1.jpeg";
 
 export default function HeroImage() {
   return (

@@ -1,7 +1,5 @@
 import { memo } from "react";
 
-// The ink effect finds this button by its id and class name: do not rename them.
-// The label switches with CSS (see index.css), so no icon is needed.
 function ThemeToggle() {
   return (
     <button

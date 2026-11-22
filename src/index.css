@@ -103,7 +103,6 @@ img, video { max-width: 100%; height: auto; }
 }
 
 .theme-toggle:hover {
-  transform: rotate(-12deg) scale(1.04);
   border-color: var(--ink);
 }
 
@@ -229,4 +228,15 @@ html[data-theme='dark'] h1 span {
 }
 html[data-theme='dark'] h1 {
   mix-blend-mode: difference;
+}
+
+
+
+.theme-toggle.is-spinning {
+  animation: theme-spin 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes theme-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
