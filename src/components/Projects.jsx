@@ -1,52 +1,102 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaArrowUp } from "react-icons/fa";
 
 const projects = [
   {
-    status: "Completed",
+    status: "In progress",
     title: "Jarvis AI Voice Assistant",
     about: "Opens apps, plays songs and gives temperature updates by voice.",
     tags: ["Python", "Voice"],
-    link: "https://github.com/your-username/jarvis",
+    link: "https://github.com/dhananjayshrama",
+  },
+  {
+    status: "Completed",
+    title: "Hand Gesture Cursor",
+    about: "Controls the mouse with index and middle finger tracking through the camera. Gestures click, select videos and adjust volume.",
+    tags: ["Python", "OpenCV", "Gesture Control"],
+    link: "https://github.com/dhananjayshrama/hand-cursor-in-python",
   },
   {
     status: "In progress",
-    title: "Notes App",
+    title: "NotesByDanny",
     about: "Create, edit, delete and manage notes using React Hooks.",
-    tags: ["React Native", "Expo Go"],
-    link: "https://github.com/your-username/notes-app",
+    tags: ["React Native", "Expo"],
+    link: "https://expo.dev/accounts/dhananjayrajeshsharma",
+  },
+  {
+    status: "Completed",
+    title: "Indu Production",
+    about: "Wedding post-production studio website with services, portfolio and contact sections.",
+    tags: ["React", "Tailwind"],
+    link: "https://induproduction.netlify.app/",
   },
   {
     status: "Completed",
     title: "Portfolio Website",
-    about: "Personal site built with React and Tailwind CSS git&github.",
+    about: "Personal site built with React and Tailwind CSS.",
     tags: ["React", "Tailwind"],
-    link: "https://github.com/your-username/portfolio",
+    link: "https://dhananjaysharm1.netlify.app/",
   },
 ];
 
+// duplicated so the loop never shows an empty gap
+const loopItems = [...projects, ...projects];
+
+const SPEED = 40; // pixels per second, change this to go faster or slower
+
 export default function Projects() {
   const sliderRef = useRef(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-
-  const updateArrows = () => {
-    const el = sliderRef.current;
-    if (!el) return;
-    setAtStart(el.scrollLeft <= 4);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
-  };
+  const pausedRef = useRef(false);
+  const pausedUntilRef = useRef(0);
 
   useEffect(() => {
-    updateArrows();
-    window.addEventListener("resize", updateArrows);
-    return () => window.removeEventListener("resize", updateArrows);
+    const el = sliderRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let pos = el.scrollLeft;
+    let last = performance.now();
+    let frame;
+
+    const tick = (now) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      const half = el.scrollWidth / 2;
+
+      if (pausedRef.current || now < pausedUntilRef.current) {
+        // user is in control, follow where they are
+        pos = el.scrollLeft;
+      } else {
+        pos += SPEED * dt;
+        if (pos >= half) pos -= half;
+        el.scrollLeft = pos;
+      }
+
+      // keep manual scrolling inside the loop too
+      if (el.scrollLeft >= half) {
+        el.scrollLeft -= half;
+        pos = el.scrollLeft;
+      }
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const slide = (direction) => {
     const el = sliderRef.current;
     if (!el) return;
     const cardWidth = el.firstElementChild.offsetWidth;
+    const half = el.scrollWidth / 2;
+
+    // jump into the middle of the loop first if going backwards from the start
+    if (direction < 0 && el.scrollLeft < cardWidth) {
+      el.scrollLeft += half;
+    }
+
+    pausedUntilRef.current = performance.now() + 800;
     el.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
   };
 
@@ -64,17 +114,15 @@ export default function Projects() {
         <div className="flex gap-2">
           <button
             onClick={() => slide(-1)}
-            disabled={atStart}
             aria-label="Previous project"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper"
           >
             <FaArrowLeft />
           </button>
           <button
             onClick={() => slide(1)}
-            disabled={atEnd}
             aria-label="Next project"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-ink transition-colors hover:bg-ink hover:text-paper"
           >
             <FaArrowRight />
           </button>
@@ -84,21 +132,27 @@ export default function Projects() {
       {/* slider */}
       <div
         ref={sliderRef}
-        onScroll={updateArrows}
-        className="flex snap-x snap-mandatory overflow-x-auto border-y border-ink [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onMouseEnter={() => (pausedRef.current = true)}
+        onMouseLeave={() => (pausedRef.current = false)}
+        onTouchStart={() => (pausedRef.current = true)}
+        onTouchEnd={() => {
+          pausedUntilRef.current = performance.now() + 1500;
+          pausedRef.current = false;
+        }}
+        className="flex overflow-x-auto border-y border-ink [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {projects.map((p, i) => (
+        {loopItems.map((p, i) => (
           <a
-            key={p.title}
+            key={`${p.title}-${i}`}
             href={p.link}
             target="_blank"
             rel="noreferrer"
-            className="group flex min-h-[340px] w-[85%] shrink-0 snap-start flex-col justify-between border-r border-ink p-6 transition-colors duration-300 last:border-r-0 hover:bg-ink hover:text-paper sm:w-[48%] lg:w-[36%]"
+            className="group flex min-h-[340px] w-[85%] shrink-0 flex-col justify-between border-r border-ink p-6 transition-colors duration-300 hover:bg-ink hover:text-paper sm:w-[48%] lg:w-[36%]"
           >
             {/* number and status */}
             <div>
               <p className="font-['Figtree'] text-7xl font-black leading-none tracking-tighter md:text-8xl">
-                {String(i + 1).padStart(2, "0")}
+                {String((i % projects.length) + 1).padStart(2, "0")}
               </p>
               <p className="mt-2 text-xs uppercase tracking-[0.14em] opacity-60">
                 {p.status}
