@@ -167,6 +167,7 @@ html[data-theme='dark'] .text-gray-500,
 html[data-theme='dark'] .text-gray-600 {
   color: var(--muted);
 }
+
 /* Glass navbar */
 .glass-nav {
   background-color: rgba(255, 255, 255, 0.6);
@@ -177,6 +178,7 @@ html[data-theme='dark'] .text-gray-600 {
 html[data-theme='dark'] .glass-nav {
   background-color: rgba(0, 0, 0, 0.55);
 }
+
 /* Text theme button (no icon) */
 button.theme-toggle {
   width: auto;
@@ -202,6 +204,7 @@ html[data-theme='dark'] .theme-toggle__to-dark {
 html[data-theme='dark'] .theme-toggle__to-light {
   display: inline;
 }
+
 /* Hero photo: swap with the theme */
 .hero-img-dark {
   display: none;
@@ -214,12 +217,7 @@ html[data-theme='dark'] .hero-img-light {
 html[data-theme='dark'] .hero-img-dark {
   display: block;
 }
-/* Test: force the heading light in dark mode and add a shadow so it shows over the photo */
-html[data-theme='dark'] h1,
-html[data-theme='dark'] h1 span {
-  color: #f2efe8 !important;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-}
+
 /* Test: force the heading light in dark mode and add a shadow so it shows over the photo */
 html[data-theme='dark'] h1,
 html[data-theme='dark'] h1 span {
@@ -230,8 +228,6 @@ html[data-theme='dark'] h1 {
   mix-blend-mode: difference;
 }
 
-
-
 .theme-toggle.is-spinning {
   animation: theme-spin 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -240,10 +236,6 @@ html[data-theme='dark'] h1 {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-
-
-
-
 
 /* ---------- DS logo ---------- */
 .ds-logo {
@@ -283,4 +275,23 @@ html[data-theme='dark'] h1 {
 
 @media (prefers-reduced-motion: reduce) {
   .ds-logo__web path { animation: none; stroke-dasharray: none; }
+}
+
+/* ---------- Liquid (Skills: MERN tile) ---------- */
+@keyframes liquid-rise {
+  from { height: 0px; }
+  to   { height: calc(var(--fill) + 120px); }
+}
+@keyframes liquid-wave {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.liquid-rise      { animation: liquid-rise 1.8s cubic-bezier(.22, 1, .36, 1) forwards; }
+.liquid-wave      { animation: liquid-wave 4s linear infinite; }
+.liquid-wave-slow { animation: liquid-wave 7s linear infinite reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave,
+  .liquid-wave-slow { animation: none; }
 }

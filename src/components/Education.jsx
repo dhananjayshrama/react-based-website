@@ -12,7 +12,7 @@ const education = [
   {
     label: "2019",
     title: "SSC",
-    detail: "Add your school name and percentage",
+    detail: "SSMP School, Solapur-akkalkot road  ",
   },
 ];
 
